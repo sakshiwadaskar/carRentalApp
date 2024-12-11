@@ -1,0 +1,42 @@
+.spinner {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.no-bookings {
+  text-align: center;
+  color: gray;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1em;
+  text-align: left;
+}
+
+.bookings-table th, .bookings-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.bookings-table th {
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.bookings-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.bookings-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.bookings-table td {
+  text-align: center;
+}

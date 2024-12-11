@@ -1,0 +1,27 @@
+.spinner {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.no-bookings {
+  text-align: center;
+  color: red;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+.bookings-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.bookings-list li {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.bookings-list button {
+  margin-right: 10px;
+}

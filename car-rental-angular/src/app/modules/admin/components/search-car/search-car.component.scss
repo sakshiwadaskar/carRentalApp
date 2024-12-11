@@ -1,0 +1,29 @@
+.no-results {
+  text-align: center;
+  color: red;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+.spinner {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.car-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.car-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.car-card img {
+  max-width: 100%;
+  border-radius: 5px;
+}

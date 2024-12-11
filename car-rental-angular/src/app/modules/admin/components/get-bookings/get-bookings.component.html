@@ -1,0 +1,28 @@
+<div *ngIf="isSpinning" class="spinner">
+  <nz-spin></nz-spin>
+</div>
+<nz-spin [nzSpinning]="isSpinning">
+  <div *ngIf="!isSpinning && bookings.length === 0" class="no-bookings">
+    <p>There aren't any bookings.</p>
+  </div>
+  <div class="p-6">
+    <div *ngFor="let booking of bookings"
+      class="flex bg-slate-400 p-4 rounded-lg mb-4 shadow-md items-center justify-between">
+      <div>{{booking.id}} - {{booking.bookCarStatus}}</div>
+
+
+
+      <div *ngIf="booking.bookCarStatus == 'PENDING'">
+        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+          (click)="changeBookingStatus(booking.id, 'Approve')">
+          Approve
+        </button>
+
+        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
+          (click)="changeBookingStatus(booking.id, 'Reject')">
+          Reject
+        </button>
+      </div>
+    </div>
+  </div>
+</nz-spin>

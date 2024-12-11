@@ -1,0 +1,30 @@
+<!--<nz-spin [nzSpinning]="isSpinning">-->
+<!--  <div *ngFor="let booking of bookings">{{booking.id}} - {{booking.bookCarStatus}}</div>-->
+<!--</nz-spin>-->
+<div *ngIf="isSpinning" class="spinner">
+  <p>Loading bookings...</p>
+</div>
+
+<div *ngIf="!isSpinning && bookings.length === 0" class="no-bookings">
+  <p>No bookings found.</p>
+</div>
+
+<table *ngIf="!isSpinning && bookings.length > 0" class="bookings-table">
+  <thead>
+  <tr>
+    <th>Booking ID</th>
+    <th>Car Name</th>
+    <th>Status</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let booking of bookings">
+    <td>{{ booking.id }}</td>
+    <td>{{ booking.carName }}</td>
+    <td>{{ booking.bookCarStatus }}</td>
+    <td>{{ booking.price | currency }}</td>
+  </tr>
+  </tbody>
+</table>
+
