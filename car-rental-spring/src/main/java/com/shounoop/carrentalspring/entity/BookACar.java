@@ -46,6 +46,8 @@ public class BookACar {
         bookACarDto.setUsername(this.user.getName());
         bookACarDto.setUserId(this.user.getId());
         bookACarDto.setCarId(this.car.getId());
+        bookACarDto.setCarName(this.car.getName()); // Added carName population
+        bookACarDto.setPrice(this.car.getPrice());  // Added car price
         return bookACarDto;
     }
 }

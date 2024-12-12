@@ -1,28 +1,33 @@
-<div *ngIf="isSpinning" class="spinner">
-  <nz-spin></nz-spin>
-</div>
-<nz-spin [nzSpinning]="isSpinning">
-  <div *ngIf="!isSpinning && bookings.length === 0" class="no-bookings">
-    <p>There aren't any bookings.</p>
-  </div>
-  <div class="p-6">
-    <div *ngFor="let booking of bookings"
-      class="flex bg-slate-400 p-4 rounded-lg mb-4 shadow-md items-center justify-between">
-      <div>{{booking.id}} - {{booking.bookCarStatus}}</div>
+<div class="p-6" *ngIf="!isSpinning && bookings.length > 0">
+  <div *ngFor="let booking of bookings"
+       class="flex bg-slate-400 p-4 rounded-lg mb-4 shadow-md items-center justify-between">
+    <div>
+      <div><strong>Booking ID:</strong> {{ booking.id }}</div>
+      <div><strong>Car Name:</strong> {{ booking.carName }}</div>
+      <div><strong>Status:</strong> {{ booking.bookCarStatus }}</div>
+      <div><strong>Price:</strong> {{ booking.price | currency }}</div>
+    </div>
 
-
-
-      <div *ngIf="booking.bookCarStatus == 'PENDING'">
-        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
-          (click)="changeBookingStatus(booking.id, 'Approve')">
-          Approve
-        </button>
-
-        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
-          (click)="changeBookingStatus(booking.id, 'Reject')">
-          Reject
-        </button>
-      </div>
+    <div *ngIf="booking.bookCarStatus === 'PENDING'" class="actions">
+      <button
+        style="margin-left: 10px;"
+        nzSize="small"
+        nz-button
+        nzType="primary"
+        (click)="changeBookingStatus(booking.id, 'Approve')"
+      >
+        Approve
+      </button>
+      <button
+        style="margin-left: 10px;"
+        nzSize="small"
+        nz-button
+        nzType="default"
+        nzDanger
+        (click)="changeBookingStatus(booking.id, 'Reject')"
+      >
+        Reject
+      </button>
     </div>
   </div>
-</nz-spin>
+</div>

@@ -18,17 +18,18 @@ export class MyBookingsComponent {
     this.getBookingsByUserId()
   }
 
-  private getBookingsByUserId() {
-    this.isSpinning = true
+  private getBookingsByUserId(): void {
+      this.isSpinning = true;
 
-    this.service.getBookingsByUserId().subscribe(
-      data => {
-        this.bookings = data
-        this.isSpinning = false
-      },
-      error => {
-        console.log(error)
-        this.isSpinning = false
+      this.service.getBookingsByUserId().subscribe(
+        (data) => {
+          console.log('Bookings:', data); // Debug to ensure carName and price are present
+          this.bookings = data;
+          this.isSpinning = false;
+        },
+        (error) => {
+          console.error('Error fetching bookings:', error);
+          this.isSpinning = false;
       }
     )
   }
