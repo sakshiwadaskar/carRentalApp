@@ -5,8 +5,26 @@ import com.shounoop.carrentalspring.entity.Car;
 
 import java.io.IOException;
 //Factory Pattern to encapsulate the object creation logic for Car.
+//The CarFactory class made a singleton to ensure only one instance is ever created.
 public class CarFactory {
-    public static Car createCarFromDto(CarDto carDto) throws IOException {
+    private static CarFactory instance;
+
+    private CarFactory() {
+        // Private constructor to prevent instantiation
+    }
+
+    public static CarFactory getInstance() {
+        if (instance == null) {
+            synchronized (CarFactory.class) {
+                if (instance == null) {
+                    instance = new CarFactory();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public Car createCarFromDto(CarDto carDto) throws IOException {
         Car car = new Car();
         car.setName(carDto.getName());
         car.setBrand(carDto.getBrand());
@@ -20,3 +38,4 @@ public class CarFactory {
         return car;
     }
 }
+
