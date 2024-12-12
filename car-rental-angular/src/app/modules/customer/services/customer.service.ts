@@ -39,6 +39,19 @@ export class CustomerService {
     })
   }
 
+  updateBookingStatus(bookingId: number, status: string): Observable<any> {
+      return this.http.put(`${BASIC_URL}/api/customer/car/bookings/${bookingId}/status`, status, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+  deleteBooking(bookingId: number): Observable<any> {
+    return this.http.delete(`${BASIC_URL}/api/customer/car/bookings/${bookingId}`, {
+      headers: this.createAuthorizationHeader(),
+      responseType: 'text', // Expect plain text response
+    });
+  }
+
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders()
 

@@ -65,4 +65,25 @@ public class CustomerServiceImpl implements CustomerService {
     public List<BookACarDto> getBookingsByUserId(Long userId) {
         return bookACarRepository.findAllByUserId(userId).stream().map(BookACar::getBookACarDto).collect(Collectors.toList());
     }
+
+    @Override
+    public boolean updateBookingStatus(Long bookingId, String status) {
+        return bookACarRepository.findById(bookingId).map(booking -> {
+            // Update booking status based on the provided status
+            booking.setBookCarStatus(
+                    "Approve".equalsIgnoreCase(status) ? BookCarStatus.APPROVED : BookCarStatus.REJECTED
+            );
+            bookACarRepository.save(booking); // Save the updated booking
+            return true; // Indicate success
+        }).orElse(false); // Return false if the booking ID is not found
+    }
+
+    @Override
+    public boolean deleteBooking(Long bookingId) {
+        return bookACarRepository.findById(bookingId).map(booking -> {
+            bookACarRepository.deleteById(bookingId);
+            return true;
+        }).orElse(false);
+    }
+
 }

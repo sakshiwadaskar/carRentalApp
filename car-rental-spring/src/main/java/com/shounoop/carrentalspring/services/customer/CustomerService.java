@@ -13,4 +13,7 @@ public interface CustomerService {
     CarDto getCarById(Long id);
 
     List<BookACarDto> getBookingsByUserId(Long id);
+
+    boolean updateBookingStatus(Long bookingId, String status);
+    boolean deleteBooking(Long bookingId);
 }

@@ -1,6 +1,3 @@
-<!--<nz-spin [nzSpinning]="isSpinning">-->
-<!--  <div *ngFor="let booking of bookings">{{booking.id}} - {{booking.bookCarStatus}}</div>-->
-<!--</nz-spin>-->
 <div *ngIf="isSpinning" class="spinner">
   <p>Loading bookings...</p>
 </div>
@@ -16,6 +13,7 @@
     <th>Car Name</th>
     <th>Status</th>
     <th>Price</th>
+    <th>Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -24,6 +22,11 @@
     <td>{{ booking.carName}}</td>
     <td>{{ booking.bookCarStatus }}</td>
     <td>{{ booking.price | currency }}</td>
+    <td>
+      <button nz-button nzType="default" nzDanger nzSize="small" (click)="deleteBooking(booking.id)">
+        Delete
+      </button>
+    </td>
   </tr>
   </tbody>
 </table>

@@ -45,4 +45,25 @@ public class CustomerController {
     public ResponseEntity<List<BookACarDto>> getBookingsByUserId(@PathVariable Long userId) {
         return ResponseEntity.ok(customerService.getBookingsByUserId(userId));
     }
+
+    // New Endpoint to Update Booking Status
+    @PutMapping("/car/bookings/{bookingId}/status")
+    public ResponseEntity<String> updateBookingStatus(
+            @PathVariable Long bookingId,
+            @RequestBody String status
+    ) {
+        boolean isUpdated = customerService.updateBookingStatus(bookingId, status);
+
+        if (isUpdated) {
+            return ResponseEntity.ok("Booking status updated successfully");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid booking ID or status");
+    }
+
+    @DeleteMapping("/car/bookings/{bookingId}")
+    public ResponseEntity<String> deleteBooking(@PathVariable Long bookingId) {
+        return customerService.deleteBooking(bookingId)
+                ? ResponseEntity.ok("Booking deleted successfully")
+                : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Booking not found");
+    }
 }
